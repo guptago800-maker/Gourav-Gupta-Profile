@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gourav Gupta | QA Automation Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#080b10;--bg2:#0d1117;--bg3:#131920;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+  --text:#cdd6f4;--text2:#a6adc8;--muted:#585b70;
+  --accent:#89b4fa;--green:#a6e3a1;--teal:#94e2d5;
+  --yellow:#f9e2af;--red:#f38ba8;--mauve:#cba6f7;--peach:#fab387;
+}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:rgba(8,11,16,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--accent);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1.5px solid rgba(137,180,250,0.3);border-radius:8px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-size:13px;font-weight:600;color:var(--accent);font-family:'JetBrains Mono',monospace}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 360px;gap:60px;align-items:center;max-width:1140px;margin:0 auto;padding:80px 48px 60px;position:relative}
+.hero::before{content:'';position:absolute;top:-50px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(137,180,250,0.05) 0%,transparent 70%);pointer-events:none}
+
+.avail-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:100px;border:1px solid rgba(166,227,161,0.25);background:rgba(166,227,161,0.06);font-size:12px;font-weight:500;color:var(--green);font-family:'JetBrains Mono',monospace;margin-bottom:32px}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(44px,6.5vw,74px);font-weight:800;line-height:1.0;letter-spacing:-2.5px;color:#fff;margin-bottom:12px}
+.hero-role{font-family:'Syne',sans-serif;font-size:clamp(15px,2.2vw,21px);font-weight:600;color:var(--text2);margin-bottom:6px;letter-spacing:-0.3px}
+.hero-sub{font-size:13px;color:var(--muted);margin-bottom:28px;font-family:'JetBrains Mono',monospace}
+.hero-sub span{color:var(--accent);margin:0 5px}
+.hero-desc{font-size:15px;color:var(--text2);line-height:1.85;max-width:560px;margin-bottom:36px}
+.hero-desc strong{color:var(--text);font-weight:600}
+
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.btn-filled{background:var(--accent);color:var(--bg);border:1px solid var(--accent)}
+.btn-filled:hover{background:#74a8f5;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.btn-ghost:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.15)}
+
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:36px;border-top:1px solid var(--border)}
+.stat-val{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px;color:#fff;line-height:1}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:0.3px}
+
+/* HERO CARD */
+.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:22px}
+.card-avatar{width:68px;height:68px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--mauve));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--bg);letter-spacing:-1px}
+.card-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px}
+.card-title{font-size:13px;color:var(--text2);margin-bottom:2px}
+.card-company{font-size:13px;color:var(--accent);font-weight:500}
+.card-div{height:1px;background:var(--border)}
+.card-row{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text2)}
+.card-icon{font-size:15px;width:20px;text-align:center}
+.card-chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:3px 9px;border-radius:5px;font-size:11px;font-weight:500;font-family:'JetBrains Mono',monospace;background:rgba(137,180,250,0.1);color:var(--accent);border:1px solid rgba(137,180,250,0.2)}
+
+/* SECTIONS */
+.divider{height:1px;background:var(--border)}
+.section{max-width:1140px;margin:0 auto;padding:80px 48px}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:48px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text{font-size:15px;color:var(--text2);line-height:1.85}
+.about-text p{margin-bottom:18px}
+.about-text strong{color:var(--text);font-weight:600}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.mc-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+.mc-lbl{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.sg{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color 0.2s,transform 0.2s}
+.sg:hover{border-color:var(--border2);transform:translateY(-2px)}
+.sg-lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-family:'JetBrains Mono',monospace}
+.sg-tags{display:flex;flex-wrap:wrap;gap:6px}
+.t{padding:3px 9px;border-radius:5px;font-size:12px;font-weight:500;font-family:'JetBrains Mono',monospace}
+.t-b{background:rgba(137,180,250,0.1);color:var(--accent);border:1px solid rgba(137,180,250,0.18)}
+.t-g{background:rgba(166,227,161,0.1);color:var(--green);border:1px solid rgba(166,227,161,0.18)}
+.t-m{background:rgba(203,166,247,0.1);color:var(--mauve);border:1px solid rgba(203,166,247,0.18)}
+.t-p{background:rgba(250,179,135,0.1);color:var(--peach);border:1px solid rgba(250,179,135,0.18)}
+.t-y{background:rgba(249,226,175,0.1);color:var(--yellow);border:1px solid rgba(249,226,175,0.18)}
+.t-t{background:rgba(148,226,213,0.1);color:var(--teal);border:1px solid rgba(148,226,213,0.18)}
+.t-x{background:rgba(255,255,255,0.04);color:var(--text2);border:1px solid var(--border)}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:3px}
+.exp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s}
+.exp-card:hover{border-color:var(--border2)}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:28px 30px 0}
+.exp-company{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:5px}
+.exp-role{font-size:14px;color:var(--accent);font-weight:500;margin-bottom:5px}
+.exp-meta{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.exp-badge{padding:4px 12px;border-radius:100px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.b-now{background:rgba(166,227,161,0.1);color:var(--green);border:1px solid rgba(166,227,161,0.25)}
+.b-old{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border)}
+.exp-ai{display:inline-flex;align-items:center;gap:6px;margin:14px 30px 0;padding:3px 10px;border-radius:100px;background:rgba(203,166,247,0.08);border:1px solid rgba(203,166,247,0.18);font-size:11px;color:var(--mauve);font-family:'JetBrains Mono',monospace;width:fit-content}
+.exp-pts{list-style:none;padding:14px 30px 26px;display:flex;flex-direction:column;gap:9px}
+.exp-pts li{font-size:14px;color:var(--text2);padding-left:18px;position:relative;line-height:1.65}
+.exp-pts li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:12px;top:1px}
+.exp-pts li strong{color:var(--text);font-weight:600}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:26px;display:flex;flex-direction:column;transition:border-color 0.2s,transform 0.2s}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.proj-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.proj-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff}
+.proj-link{font-size:12px;color:var(--muted);transition:color 0.2s;flex-shrink:0}
+.proj-link:hover{color:var(--accent)}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:16px;flex:1}
+.proj-pts{list-style:none;margin-bottom:16px;display:flex;flex-direction:column;gap:6px}
+.proj-pts li{font-size:13px;color:var(--text2);padding-left:14px;position:relative;line-height:1.6}
+.proj-pts li::before{content:'–';position:absolute;left:0;color:var(--muted)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.proj-metrics{display:flex;flex-wrap:wrap;gap:6px}
+.pm{padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;background:rgba(166,227,161,0.08);color:var(--green);border:1px solid rgba(166,227,161,0.18);font-family:'JetBrains Mono',monospace}
+
+/* IMPACT */
+.impact-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:40px}
+.ic{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px 24px;text-align:center;transition:border-color 0.2s}
+.ic:hover{border-color:var(--border2)}
+.ic-val{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:10px}
+.ic-desc{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* CERTS */
+.certs-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.cert{display:flex;align-items:center;gap:12px;padding:13px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;min-width:280px;flex:1;transition:border-color 0.2s}
+.cert:hover{border-color:var(--border2)}
+.cert-ico{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cert-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.3}
+.cert-meta{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.edu{display:flex;align-items:center;gap:20px;padding:22px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:12px}
+.edu-ico{font-size:28px;flex-shrink:0}
+.edu-deg{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff}
+.edu-det{font-size:13px;color:var(--text2);margin-top:3px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-intro{font-size:15px;color:var(--text2);line-height:1.85;margin-bottom:28px}
+.contact-intro strong{color:var(--text);font-weight:600}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.cl{display:flex;align-items:center;gap:14px;padding:13px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text2);font-size:14px;transition:all 0.2s}
+.cl:hover{border-color:var(--border2);color:var(--text)}
+.cl-ico{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.cbox{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px}
+.cbox h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px}
+.cbox p{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:24px}
+.role-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.rt{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500;background:rgba(137,180,250,0.08);color:var(--accent);border:1px solid rgba(137,180,250,0.18)}
+
+footer{border-top:1px solid var(--border);padding:28px 48px;text-align:center;font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}.hero-card{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  nav{padding:0 24px}.section{padding:60px 24px}.hero{padding:80px 24px 60px}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">GG</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="nav-cta">+91 6296933734</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="avail-badge"><span class="avail-dot"></span>Open to New Opportunities</div>
+    <h1>Gourav<br>Gupta</h1>
+    <p class="hero-role">QA Automation Engineer · AI-Driven Testing</p>
+    <p class="hero-sub">Playwright + TypeScript<span>·</span>Cognizant<span>·</span>3.7 Yrs</p>
+    <p class="hero-desc">
+      QA Automation Engineer specialising in <strong>Playwright + TypeScript</strong> with 3.7 years at Cognizant. I build production-grade frameworks from scratch — hybrid API + UI, CI/CD integrated, and AI-assisted. Worked across <strong>Warehouse Management, Retail E-commerce</strong> and <strong>Airline</strong> domains.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:guptago8000@gmail.com" class="btn btn-filled">✉ Contact Me</a>
+      <a href="https://linkedin.com/in/gouravgupta99" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+      <a href="https://github.com/guptago800-maker" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">3.7</div><div class="stat-lbl">Years Experience</div></div>
+      <div class="stat"><div class="stat-val">150+</div><div class="stat-lbl">Test Cases Automated</div></div>
+      <div class="stat"><div class="stat-val">40%</div><div class="stat-lbl">Regression Time Cut</div></div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="card-avatar">GG</div>
+    <div>
+      <div class="card-name">Gourav Gupta</div>
+      <div class="card-title">QA Automation Engineer</div>
+      <div class="card-company">Associate @ Cognizant</div>
+    </div>
+    <div class="card-div"></div>
+    <div class="card-row"><span class="card-icon">📍</span>Kolkata, India</div>
+    <div class="card-row"><span class="card-icon">🎓</span>B.Tech CSE · 2022 · 72%</div>
+    <div class="card-row"><span class="card-icon">🤖</span>AI-Driven QA Engineer</div>
+    <div class="card-div"></div>
+    <div class="card-chips">
+      <span class="chip">Playwright</span><span class="chip">TypeScript</span>
+      <span class="chip">Claude AI</span><span class="chip">Jenkins</span>
+      <span class="chip">Appium</span><span class="chip">Allure</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="eyebrow">Profile</div>
+  <h2 class="sec-title">About</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I am a QA Automation Engineer at <strong>Cognizant</strong> with 3.7 years of experience building automation infrastructure that delivers real business value. I specialise in <strong>Playwright + TypeScript</strong> and have built production-grade frameworks from scratch across three enterprise domains.</p>
+      <p>My approach to testing is <strong>AI-driven from the ground up</strong> — I use <strong>Claude AI</strong> for architecture decisions and debugging, <strong>GitHub Copilot</strong> for script generation, and <strong>Cursor</strong> for intelligent refactoring. This combination consistently delivers frameworks faster, with higher quality and lower maintenance overhead.</p>
+      <p>In my current WMS project I designed a <strong>hybrid API + UI automation framework</strong> covering the complete inbound warehouse journey — from Purchase Order validation through ASN creation, Inbound Delivery, Receiving, Putaway to PIX confirmation — zero hardcoding, fully dynamic, CI/CD integrated.</p>
+      <p>I am now exploring <strong>Senior QA Automation</strong> and <strong>SDET</strong> opportunities where I can apply AI-driven testing at scale and build quality infrastructure that truly moves the needle.</p>
+    </div>
+    <div class="metrics-grid reveal">
+      <div class="mc"><div class="mc-val" style="color:var(--accent)">3.7</div><div class="mc-lbl">Years in QA &amp; Test Automation</div></div>
+      <div class="mc"><div class="mc-val" style="color:var(--green)">40%</div><div class="mc-lbl">Regression cycle time reduced</div></div>
+      <div class="mc"><div class="mc-val" style="color:var(--peach)">35%</div><div class="mc-lbl">Manual testing effort cut</div></div>
+      <div class="mc"><div class="mc-val" style="color:var(--mauve)">95%+</div><div class="mc-lbl">Coverage on critical journeys</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="eyebrow">Expertise</div>
+  <h2 class="sec-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="sg reveal"><div class="sg-lbl">Automation &amp; Testing</div><div class="sg-tags"><span class="t t-b">Playwright</span><span class="t t-b">TypeScript</span><span class="t t-b">JavaScript</span><span class="t t-x">Selenium</span><span class="t t-x">Appium</span><span class="t t-x">API Testing</span><span class="t t-x">BrowserStack</span><span class="t t-x">Postman</span></div></div>
+    <div class="sg reveal"><div class="sg-lbl">AI in Quality Engineering</div><div class="sg-tags"><span class="t t-m">Claude AI</span><span class="t t-m">GitHub Copilot</span><span class="t t-m">Cursor</span><span class="t t-x">AI Test Gen</span><span class="t t-x">Prompt Eng</span><span class="t t-x">Self-Healing</span></div></div>
+    <div class="sg reveal"><div class="sg-lbl">CI/CD &amp; DevOps</div><div class="sg-tags"><span class="t t-p">Jenkins</span><span class="t t-p">GitHub Actions</span><span class="t t-x">Git</span><span class="t t-x">Bitbucket</span><span class="t t-x">Azure DevOps</span></div></div>
+    <div class="sg reveal"><div class="sg-lbl">Frameworks &amp; Reporting</div><div class="sg-tags"><span class="t t-y">Page Object Model</span><span class="t t-y">Allure Reports</span><span class="t t-x">BDD / Cucumber</span><span class="t t-x">Agile / Scrum</span><span class="t t-x">STLC / SDLC</span></div></div>
+    <div class="sg reveal"><div class="sg-lbl">Domains</div><div class="sg-tags"><span class="t t-t">Warehouse Management</span><span class="t t-t">Retail E-commerce</span><span class="t t-t">Airline</span><span class="t t-x">Mobile (Android/iOS)</span></div></div>
+    <div class="sg reveal"><div class="sg-lbl">Tools &amp; Tracking</div><div class="sg-tags"><span class="t t-g">Jira</span><span class="t t-g">Azure Boards</span><span class="t t-x">VS Code</span><span class="t t-x">npm</span><span class="t t-x">Node.js</span></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="eyebrow">Career</div>
+  <h2 class="sec-title">Work Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div>
+          <div class="exp-company">Cognizant Technology Solutions</div>
+          <div class="exp-role">Associate — QA Automation Engineer · WMS (Manhattan Active WMS)</div>
+          <div class="exp-meta">Jan 2026 – Present &nbsp;·&nbsp; Kolkata, India</div>
+        </div>
+        <span class="exp-badge b-now">Current</span>
+      </div>
+      <div class="exp-ai">🤖 AI Tool: Claude AI</div>
+      <ul class="exp-pts">
+        <li>Designed and built a <strong>production-grade Playwright + TypeScript hybrid API + UI automation framework</strong> from scratch for an enterprise Warehouse Management System.</li>
+        <li>Automated 20+ critical inbound workflows — PO validation, ASN creation, IBD, Receiving, Putaway and PIX confirmation — end to end in one unified framework.</li>
+        <li>Architected in-memory SharedState fixture for seamless cross-layer data sharing — <strong>zero hardcoding</strong> of transactional data throughout the framework.</li>
+        <li>Reduced manual testing effort by ~30% through regression and smoke suite automation integrated with Jenkins CI/CD pipelines and Allure reporting.</li>
+        <li>Leveraged <strong>Claude AI</strong> for architecture decisions, complex debugging (multi-tab, iframe, custom Ionic components) and test strategy documentation.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div>
+          <div class="exp-company">Cognizant Technology Solutions</div>
+          <div class="exp-role">Programming Analyst — QA Automation Engineer · Retail E-commerce</div>
+          <div class="exp-meta">Feb 2024 – Dec 2025 &nbsp;·&nbsp; Kolkata, India</div>
+        </div>
+        <span class="exp-badge b-old">Past</span>
+      </div>
+      <div class="exp-ai">🤖 AI Tool: Cursor</div>
+      <ul class="exp-pts">
+        <li>Enhanced and maintained <strong>Playwright TypeScript</strong> automation framework using Page Object Model — reduced manual testing effort by 35%.</li>
+        <li>Implemented mobile automation using <strong>Appium (Java)</strong> for Android and iOS; executed cross-browser testing via BrowserStack across Chrome, Firefox and Safari.</li>
+        <li>Utilised Cursor AI for intelligent code completion and refactoring — improving development velocity and code consistency significantly.</li>
+        <li>Integrated CI/CD pipelines with Jenkins for nightly regression runs following Agile methodology across full SDLC and STLC.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div>
+          <div class="exp-company">Cognizant Technology Solutions</div>
+          <div class="exp-role">Programming Analyst Trainee — QA Engineer · Airline Domain</div>
+          <div class="exp-meta">Oct 2022 – Jan 2024 &nbsp;·&nbsp; Kolkata, India</div>
+        </div>
+        <span class="exp-badge b-old">Past</span>
+      </div>
+      <div class="exp-ai">🤖 AI Tool: GitHub Copilot</div>
+      <ul class="exp-pts">
+        <li>Created and maintained test cases from user stories in Azure DevOps following STLC and SDLC processes with full end-to-end traceability.</li>
+        <li>Achieved <strong>95%+ test coverage</strong> across booking and check-in workflows; automated critical UI scenarios cutting regression cycle time by 40%.</li>
+        <li>Utilised GitHub Copilot for AI-assisted test script generation; tracked and managed 60+ defects ensuring zero critical bugs at production release.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="eyebrow">Work</div>
+  <h2 class="sec-title">Key Projects</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-name">WMS Inbound Automation Framework</div><span class="proj-link">Cognizant · Confidential</span></div>
+      <p class="proj-desc">Production-grade hybrid API + UI Playwright TypeScript framework for Manhattan Active WMS covering the complete inbound journey — PO validation, ASN creation, IBD, Receiving, Putaway and PIX confirmation.</p>
+      <ul class="proj-pts">
+        <li>9-tier layered architecture — CI/CD, fixtures, API clients, page objects, test data, reporting</li>
+        <li>In-memory SharedState fixture — seamless API-to-UI data bridge, zero disk I/O</li>
+        <li>Multi-tab, iframe and custom Ionic component handling</li>
+        <li>Allure reporting with step annotations and environment properties</li>
+      </ul>
+      <div class="proj-tags"><span class="t t-b">Playwright</span><span class="t t-b">TypeScript</span><span class="t t-m">Claude AI</span><span class="t t-p">Jenkins</span><span class="t t-y">Allure</span><span class="t t-x">POM</span></div>
+      <div class="proj-metrics"><span class="pm">~30% effort saved</span><span class="pm">20+ workflows</span><span class="pm">Zero hardcoding</span></div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-name">Playwright Automation Framework</div><a href="https://github.com/guptago800-maker/playwright-automation-framework" target="_blank" class="proj-link">GitHub ↗</a></div>
+      <p class="proj-desc">Personal production-grade framework — UI, API and E2E testing across Chrome, Firefox and Safari with full CI/CD automation and Allure reporting.</p>
+      <ul class="proj-pts">
+        <li>Page Object Model with abstract BasePage inheritance</li>
+        <li>Reusable auth fixture eliminating duplicate login logic</li>
+        <li>GitHub Actions CI/CD — auto executes on every pull request</li>
+        <li>Allure Reports integration with rich step-level insights</li>
+      </ul>
+      <div class="proj-tags"><span class="t t-b">Playwright</span><span class="t t-b">TypeScript</span><span class="t t-p">GitHub Actions</span><span class="t t-y">Allure</span><span class="t t-x">Cross-browser</span></div>
+      <div class="proj-metrics"><span class="pm">21+ test cases</span><span class="pm">3 browsers</span><span class="pm">API + UI</span></div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-name">E-commerce Mobile + Web Automation</div><span class="proj-link">Cognizant · Confidential</span></div>
+      <p class="proj-desc">Full-stack automation — web via Playwright and mobile via Appium for Android and iOS with BrowserStack cross-browser execution and Jenkins CI/CD.</p>
+      <ul class="proj-pts">
+        <li>Playwright UI framework with POM and reusable utilities</li>
+        <li>Appium (Java) for Android and iOS native and hybrid apps</li>
+        <li>BrowserStack integration for multi-device parallel execution</li>
+        <li>Jenkins CI/CD nightly regression pipeline</li>
+      </ul>
+      <div class="proj-tags"><span class="t t-b">Playwright</span><span class="t t-t">Appium</span><span class="t t-t">BrowserStack</span><span class="t t-p">Jenkins</span><span class="t t-m">Cursor AI</span></div>
+      <div class="proj-metrics"><span class="pm">35% effort saved</span><span class="pm">Android + iOS</span><span class="pm">Multi-browser</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- IMPACT -->
+<section class="section" id="impact">
+  <div class="eyebrow">Impact</div>
+  <h2 class="sec-title">Achievements &amp; Recognition</h2>
+  <div class="impact-nums">
+    <div class="ic reveal"><div class="ic-val" style="color:var(--accent)">150+</div><div class="ic-desc">Test cases automated across UI, API and mobile platforms</div></div>
+    <div class="ic reveal"><div class="ic-val" style="color:var(--green)">35%</div><div class="ic-desc">Manual testing effort reduced through intelligent automation</div></div>
+    <div class="ic reveal"><div class="ic-val" style="color:var(--peach)">40%</div><div class="ic-desc">Regression cycle time cut through CI/CD integration</div></div>
+    <div class="ic reveal"><div class="ic-val" style="color:var(--mauve)">95%+</div><div class="ic-desc">Test coverage on critical user journeys at every release</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTS -->
+<section class="section">
+  <div class="eyebrow">Credentials</div>
+  <h2 class="sec-title">Certifications &amp; Education</h2>
+  <div class="certs-wrap">
+    <a href="https://ude.my/UC-5af7ffba-c18a-465d-aa88-99675036eeea" target="_blank" class="cert reveal">
+      <div class="cert-ico" style="background:rgba(137,180,250,0.12)">🎭</div>
+      <div><div class="cert-name">Playwright — Complete Beginner Course 2026 (UI + API)</div><div class="cert-meta">Udemy · 2026 · UC-5af7ffba</div></div>
+    </a>
+    <a href="https://ude.my/UC-7c4f8ddd-ad44-4057-8bff-4a9feeaf2679" target="_blank" class="cert reveal">
+      <div class="cert-ico" style="background:rgba(148,226,213,0.12)">⚡</div>
+      <div><div class="cert-name">Playwright API Testing Mastery with TypeScript</div><div class="cert-meta">Udemy · 2026 · UC-7c4f8ddd</div></div>
+    </a>
+    <div class="cert reveal">
+      <div class="cert-ico" style="background:rgba(203,166,247,0.12)">🤖</div>
+      <div><div class="cert-name">Playwright using TypeScript with AI — Web &amp; API Automation</div><div class="cert-meta">Udemy · 2024</div></div>
+    </div>
+    <div class="cert reveal">
+      <div class="cert-ico" style="background:rgba(250,179,135,0.12)">🧠</div>
+      <div><div class="cert-name">Playwright E2E Automation with TypeScript, MCP &amp; AI Agents</div><div class="cert-meta">Udemy · 2025</div></div>
+    </div>
+    <div class="cert reveal">
+      <div class="cert-ico" style="background:rgba(249,226,175,0.12)">📋</div>
+      <div><div class="cert-name">ISTQB Foundation Level</div><div class="cert-meta">In Progress</div></div>
+    </div>
+  </div>
+  <div class="edu reveal">
+    <div class="edu-ico">🎓</div>
+    <div>
+      <div class="edu-deg">B.Tech — Computer Science Engineering</div>
+      <div class="edu-det">Sikkim Manipal Institute of Technology &nbsp;·&nbsp; Graduated 2022 &nbsp;·&nbsp; 72%</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="eyebrow">Contact</div>
+  <h2 class="sec-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">Available for <strong>QA Automation Engineer</strong>, <strong>Senior SDET</strong> and <strong>AI-Driven QA</strong> roles. I would love to discuss how I can strengthen your team's quality infrastructure and deliver measurable automation results.</p>
+      <div class="contact-links">
+        <a href="mailto:guptago8000@gmail.com" class="cl"><span class="cl-ico">✉</span>guptago8000@gmail.com</a>
+        <a href="tel:+916296933734" class="cl"><span class="cl-ico">📞</span>+91 6296933734</a>
+        <a href="https://linkedin.com/in/gouravgupta99" target="_blank" class="cl"><span class="cl-ico">in</span>linkedin.com/in/gouravgupta99</a>
+        <a href="https://github.com/guptago800-maker" target="_blank" class="cl"><span class="cl-ico">⌥</span>github.com/guptago800-maker</a>
+      </div>
+    </div>
+    <div class="cbox reveal">
+      <h3>Open to Opportunities</h3>
+      <p>Currently at Cognizant with 3.7+ years of QA Automation experience. Actively exploring roles where I can apply AI-driven testing at scale and build quality infrastructure that delivers measurable results.</p>
+      <div class="role-tags">
+        <span class="rt">QA Automation Engineer</span>
+        <span class="rt">Senior SDET</span>
+        <span class="rt">AI-Driven QA</span>
+        <span class="rt">Test Architect</span>
+      </div>
+      <a href="mailto:guptago8000@gmail.com" class="btn btn-filled">Send a Message ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>Gourav Gupta &nbsp;·&nbsp; QA Automation Engineer &nbsp;·&nbsp; Kolkata, India &nbsp;·&nbsp; guptago8000@gmail.com &nbsp;·&nbsp; +91 6296933734</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('on'), i*70); obs.unobserve(e.target) }
+  })
+},{ threshold:0.08, rootMargin:'0px 0px -30px 0px' })
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault()
+    const t=document.querySelector(a.getAttribute('href'))
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'})
+  })
+})
+
+const secs = document.querySelectorAll('section[id]')
+const nls = document.querySelectorAll('.nav-links a')
+window.addEventListener('scroll',()=>{
+  let cur=''
+  secs.forEach(s=>{ if(window.scrollY>=s.offsetTop-100) cur=s.id })
+  nls.forEach(a=>{ a.style.color=a.getAttribute('href')===`#${cur}`?'var(--text)':'' })
+})
+</script>
+</body>
+</html>
